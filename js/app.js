@@ -1,13 +1,16 @@
-/*
- * Create a list that holds all of your cards
- */
+
+document.addEventListener("DOMContentLoaded", createCard, true);
+
+// Create a list that holds all of your cards
+
+const cards= document.querySelectorAll('.card')
+const deck = document.querySelector('.deck')
+const openCard=[];
 
 
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -26,10 +29,40 @@ function shuffle(array) {
 }
 
 
+
+// - loop through each card and create its HTML
+// - add each card's HTML to the page
+function createCard() {
+    deck.innerHTML='';
+    const suffledCards = shuffle(Array.from(cards));
+    for (let i = 0; i < suffledCards.length; i++) {
+        let card = suffledCards[i];
+        card.classList.remove("show", "open", "match");
+        deck.appendChild(card);
+    }
+}
+
+//add restart addEventListener
+document.querySelector('.restart').addEventListener('click',createCard,true);
+
+
+const flipcard=function (event) {
+    const clickedCard = event.target;
+    // check if it is the first click
+     if (openCard.length<2) {
+         clickedCard.classList.add('open', 'show')
+         // add the card to a *list* of "open" cards
+         openCard.push(clickedCard);
+     }
+ };
+
+// set up the event listener for a card. If a card is clicked:
+for (let i=0; i<=16; i++) {
+        cards[i].addEventListener('click',flipcard,true);
+}
+
+
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
