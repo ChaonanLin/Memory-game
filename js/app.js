@@ -96,9 +96,19 @@ for (let i=0; i<=16; i++) {
 
 function finishGame() {
     document.querySelector('.finishPopup').style.display="flex"
+    document.querySelector('.play-again').firstElementChild.addEventListener('click',playagain,true);
 };
-/*
 
+function playagain () {
+    document.querySelector('.finishPopup').style.display="none";
+    createCard();
+}
+
+
+
+
+
+/*
  *    + if the cards do match, lock the cards in the open position
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */

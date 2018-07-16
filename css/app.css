@@ -118,20 +118,14 @@ h1 {
     background-color: white;
 }
 
-.close {
-    width: 100%;
-}
-
-.fa-window-close {
-    float: right;
-    margin: 5px 10px ;
-}
 
 .finishPopup .stars {
     width: 100%;
     display: inline-block;
     list-style-type: none;
-    margin:10px 30%;
+    margin-top:10%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .finishPopup .stars li {
@@ -145,8 +139,8 @@ h1 {
     padding-left: 30%;
 }
 
-.finishPopup .restart {
+.finishPopup .play-again {
     width: 100%;
     padding-left: 45%;
-
+    cursor: pointer;
 }
