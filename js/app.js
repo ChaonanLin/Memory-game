@@ -40,7 +40,8 @@ function createCard() {
         card.classList.remove("show", "open", "match");
         deck.appendChild(card);
     }
-    move = 0;
+    document.querySelector('.moves').innerText= 0 + ' Move';
+    matchedCards = 0;
 }
 
 function changemove(){
@@ -94,9 +95,12 @@ for (let i=0; i<=16; i++) {
         cards[i].addEventListener('click',flipcard,true);
 }
 
+
+
 function finishGame() {
     document.querySelector('.finishPopup').style.display="flex"
     document.querySelector('.play-again').firstElementChild.addEventListener('click',playagain,true);
+    document.querySelector('.finishMessage').innerHTML="Congratulations! <br /> Moves: "+ move +" moves <br/> Time:xx mins xx seconds </br/>"
 };
 
 function playagain () {
