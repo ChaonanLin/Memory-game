@@ -107,3 +107,46 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.finishPopup {
+    display: none;
+    flex-wrap: wrap;
+    position:fixed;
+    width: 40%;
+    height: 300px;
+    border: solid;
+    background-color: white;
+}
+
+.close {
+    width: 100%;
+}
+
+.fa-window-close {
+    float: right;
+    margin: 5px 10px ;
+}
+
+.finishPopup .stars {
+    width: 100%;
+    display: inline-block;
+    list-style-type: none;
+    margin:10px 30%;
+}
+
+.finishPopup .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.finishMessage {
+    width: 100%;
+    text-align: left;
+    padding-left: 30%;
+}
+
+.finishPopup .restart {
+    width: 100%;
+    padding-left: 45%;
+
+}

@@ -62,6 +62,7 @@ const flipcard=function (event) {
          // add the card to a *list* of "open" cards
          openCard.push(clickedCard);
      }
+
      //if the list already has another card, check to see if the two cards match
      if (openCard.length === 2) {
          if (openCard[0].firstElementChild.className === openCard[1].firstElementChild.className ) {
@@ -70,6 +71,7 @@ const flipcard=function (event) {
              });
              matchedCards = matchedCards + 2;
          }
+
          //if the cards do not match, remove the cards from the list and hide the card's symbol
          else {
              openCard.forEach(function(card){
@@ -80,7 +82,11 @@ const flipcard=function (event) {
          openCard.splice(0,openCard.length);
      }
      move += 1;
+     //increment the move counter and display it on the page
      changemove();
+     if (matchedCards === 16) {
+         finishGame();
+     }
  };
 
 // set up the event listener for a card. If a card is clicked:
@@ -88,10 +94,11 @@ for (let i=0; i<=16; i++) {
         cards[i].addEventListener('click',flipcard,true);
 }
 
-
+function finishGame() {
+    document.querySelector('.finishPopup').style.display="flex"
+};
 /*
- *  - if the list already has another card, check to see if the two cards match
+
  *    + if the cards do match, lock the cards in the open position
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
