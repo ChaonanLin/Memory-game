@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", createCard, true);
 const cards= document.querySelectorAll('.card')
 const deck = document.querySelector('.deck')
 const openCard=[];
+const matchedCards=0;
 
 
 /*
@@ -54,6 +55,21 @@ const flipcard=function (event) {
          // add the card to a *list* of "open" cards
          openCard.push(clickedCard);
      }
+     if (openCard.length === 2) {
+         //check if the cards match
+         if (openCard[0].firstElementChild.className === openCard[1].firstElementChild.className ) {
+             openCard.forEach(function(card){
+                 card.classList.add('match')
+             });
+             matchedCards = matchedCards + 2;
+         } else {
+             openCard.forEach(function(card){
+                 card.classList.remove('open' ,'show')
+             })
+         }
+         openCard=[];
+     }
+
  };
 
 // set up the event listener for a card. If a card is clicked:
