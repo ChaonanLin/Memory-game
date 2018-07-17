@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", createCard, true);
+document.addEventListener("DOMContentLoaded", resetGame, true);
 
 // Create a list that holds all of your cards
 
@@ -8,7 +8,10 @@ const deck = document.querySelector('.deck')
 let openCard=[];
 let matchedCards=0;
 let move = 0;
-
+let minutes = 0;
+let seconds = 0;
+let hours =0;
+let t;
 
 /*
  * Display the cards on the page
@@ -30,20 +33,31 @@ function shuffle(array) {
     return array;
 }
 
-// - loop through each card and create its HTML
-// - add each card's HTML to the page
-function createCard() {
+
+// resetGame
+function resetGame() {
     deck.innerHTML='';
     const suffledCards = shuffle(Array.from(cards));
+
+    // - loop through each card and create its HTML
     for (let i = 0; i < suffledCards.length; i++) {
         let card = suffledCards[i];
         card.classList.remove("show", "open", "match");
+
+        // - add each card's HTML to the page
         deck.appendChild(card);
     }
+
+    //reset move and timer
     document.querySelector('.moves').innerText= 0 + ' Move';
+    move= 0;
     matchedCards = 0;
+    minutes = 0;
+    seconds = 0;
+    hours = 0;
 }
 
+//change the move display
 function changemove(){
     if (move<2) {
         document.querySelector('.moves').innerText= move + ' Move';
@@ -52,11 +66,54 @@ function changemove(){
         document.querySelector('.moves').innerText= move + ' Moves';
     }
 }
-//add restart addEventListener
-document.querySelector('.restart').addEventListener('click',createCard,true);
 
+
+function changestar() {
+    const stars=document.querySelectorAll('.fa-star');
+    if (move>=25) {
+        // remove the third star on game page
+        stars[2].style.display="none";
+        // remove the third star on finish game message page
+        stars[5].style.display="none";
+        if (move>=35) {
+            stars[1].style.display="none";
+            stars[4].style.display="none";
+            if (move>=40){
+                stars[0].style.display="none";
+                stars[3].style.display="none";
+            }
+        }
+    }
+}
+
+function displayTime() {
+    seconds ++;
+    if (seconds>= 60) {
+        minutes++;
+        seconds=0;
+    }
+    if (minutes>=60) {
+        hours++;
+        minutes=0;
+    }
+    timer();
+}
+
+
+function timer(){
+    t= setTimeout(displayTime,1000);
+}
+
+//add restart addEventListener
+document.querySelector('.restart').addEventListener('click',resetGame,true);
+
+//when clicked, the card will be flipped
 const flipcard=function (event) {
     const clickedCard = event.target;
+
+    //start timer
+    timer();
+
     // check if it is the first click
      if (openCard.length<2) {
          clickedCard.classList.add('open', 'show')
@@ -85,6 +142,9 @@ const flipcard=function (event) {
      move += 1;
      //increment the move counter and display it on the page
      changemove();
+     //decrease stars when moves increase
+     changestar();
+
      if (matchedCards === 16) {
          finishGame();
      }
@@ -95,22 +155,23 @@ for (let i=0; i<=16; i++) {
         cards[i].addEventListener('click',flipcard,true);
 }
 
-
-
-function finishGame() {
-    document.querySelector('.finishPopup').style.display="flex"
-    document.querySelector('.play-again').firstElementChild.addEventListener('click',playagain,true);
-    document.querySelector('.finishMessage').innerHTML="Congratulations! <br /> Moves: "+ move +" moves <br/> Time:xx mins xx seconds </br/>"
-};
-
 function playagain () {
     document.querySelector('.finishPopup').style.display="none";
-    createCard();
+    resetGame();
 }
 
+function finishGame() {
+    clearTimeout(t);
+    document.querySelector('.finishPopup').style.display="flex";
+    document.querySelector('.play-again').firstElementChild.addEventListener('click',playagain,true);
+    document.querySelector('.finishMessage').innerHTML="Congratulations! <br /> Moves: "+ move +" moves <br/> Time:"+minutes+" mins "+seconds+" seconds </br/>"
+};
 
 
 
+
+
+//bugs: 点击图标时，无法找到firstChild导致down机
 
 /*
  *    + if the cards do match, lock the cards in the open position
