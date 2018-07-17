@@ -55,6 +55,8 @@ function resetGame() {
     minutes = 0;
     seconds = 0;
     hours = 0;
+
+    resetStars();
 }
 
 //change the move display
@@ -67,9 +69,15 @@ function changemove(){
     }
 }
 
+const stars=document.querySelectorAll('.fa-star');
+
+function resetStars(){
+    stars.forEach(function(el){
+        el.style.display="inline-block";
+    })
+};
 
 function changestar() {
-    const stars=document.querySelectorAll('.fa-star');
     if (move>=25) {
         // remove the third star on game page
         stars[2].style.display="none";
