@@ -136,6 +136,9 @@ const flipcard=function (event) {
                  card.classList.add('match')
              });
              matchedCards = matchedCards + 2;
+             openCard.forEach(function(card){
+                 card.removeEventListener('click',flipcard,true)
+             });
          }
 
          //if the cards do not match, remove the cards from the list and hide the card's symbol
