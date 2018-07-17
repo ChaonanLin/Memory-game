@@ -141,7 +141,10 @@ const flipcard=function (event) {
          //if the cards do not match, remove the cards from the list and hide the card's symbol
          else {
              openCard.forEach(function(card){
-                 setTimeout(function(){card.classList.remove('open' ,'show')
+                 card.classList.add('shake')
+             });
+             openCard.forEach(function(card){
+                 setTimeout(function(){card.classList.remove('open' ,'show','shake')
              },650);
              });
          }
