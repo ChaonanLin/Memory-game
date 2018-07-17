@@ -8,10 +8,10 @@ const deck = document.querySelector('.deck')
 let openCard=[];
 let matchedCards=0;
 let move = 0;
-let minutes = 0;
-let seconds = 0;
-let hours =0;
-let t;
+var minutes = 0;
+var seconds = 0;
+var hours =0;
+var t;
 
 /*
  * Display the cards on the page
@@ -52,10 +52,11 @@ function resetGame() {
     document.querySelector('.moves').innerText= 0 + ' Move';
     move= 0;
     matchedCards = 0;
+    clearTimeout(t);
     minutes = 0;
     seconds = 0;
     hours = 0;
-
+    timer();
     resetStars();
 }
 
@@ -95,7 +96,7 @@ function changestar() {
 }
 
 function displayTime() {
-    seconds ++;
+    seconds++;
     if (seconds>= 60) {
         minutes++;
         seconds=0;
@@ -118,9 +119,6 @@ document.querySelector('.restart').addEventListener('click',resetGame,true);
 //when clicked, the card will be flipped
 const flipcard=function (event) {
     const clickedCard = event.target;
-
-    //start timer
-    timer();
 
     // check if it is the first click
      if (openCard.length<2) {
@@ -161,6 +159,7 @@ const flipcard=function (event) {
 
      if (matchedCards === 16) {
          finishGame();
+         clearTimeout(t);
      }
  };
 
@@ -175,7 +174,7 @@ function playagain () {
 }
 
 function finishGame() {
-    clearTimeout(t);
+
     document.querySelector('.finishPopup').style.display="flex";
     document.querySelector('.play-again').firstElementChild.addEventListener('click',playagain,true);
     document.querySelector('.finishMessage').innerHTML="Congratulations! <br /> Moves: "+ move +" moves <br/> Time:"+minutes+" mins "+seconds+" seconds </br/>"
