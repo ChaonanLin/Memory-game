@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", resetGame, true);
 
 const cards= document.querySelectorAll('.card')
 const deck = document.querySelector('.deck')
+const overlay=document.querySelector('#overlay')
 let openCard=[];
 let matchedCards=0;
 let move = 0;
@@ -133,6 +134,8 @@ const flipcard=function (event) {
 
      //if the list already has another card, check to see if the two cards match
      if (openCard.length === 2) {
+         //lock the page first
+         overlay.style.display="block";
 
          if (openCard[0].firstElementChild.className === openCard[1].firstElementChild.className ) {
              openCard.forEach(function(card){
@@ -151,10 +154,12 @@ const flipcard=function (event) {
              });
              openCard.forEach(function(card){
                  setTimeout(function(){card.classList.remove('open' ,'show','shake')
-             },650);
+             },700);
              });
          }
          openCard.splice(0,openCard.length);
+         // unlock the page
+         setTimeout(function(){overlay.style.display="none";},1500);
      }
      move += 1;
      //increment the move counter and display it on the page
