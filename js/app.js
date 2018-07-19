@@ -43,10 +43,12 @@ function resetGame() {
     for (let i = 0; i < suffledCards.length; i++) {
         let card = suffledCards[i];
         card.classList.remove("show", "open", "match");
-
+        card.addEventListener('click',flipcard,true);
         // - add each card's HTML to the page
         deck.appendChild(card);
     }
+
+    openCard=[];
 
     //reset move and timer
     document.querySelector('.moves').innerText= 0 + ' Move';
@@ -87,10 +89,6 @@ function changestar() {
         if (move>=35) {
             stars[1].style.display="none";
             stars[4].style.display="none";
-            if (move>=40){
-                stars[0].style.display="none";
-                stars[3].style.display="none";
-            }
         }
     }
 }
@@ -185,8 +183,3 @@ function finishGame() {
 
 
 //bugs: 点击图标时，无法找到firstChild导致down机
-
-/*
- *    + if the cards do match, lock the cards in the open position
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
