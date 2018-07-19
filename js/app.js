@@ -104,6 +104,12 @@ function displayTime() {
         minutes=0;
     }
     timer();
+
+    function twoDigit(number) {
+        let twodigit = number >= 10 ? number : "0"+number.toString();
+        return twodigit;
+    }
+    document.querySelector('.timer').innerText= twoDigit(hours)+":"+ twoDigit(minutes)+":"+twoDigit(seconds);
 }
 
 
@@ -127,6 +133,7 @@ const flipcard=function (event) {
 
      //if the list already has another card, check to see if the two cards match
      if (openCard.length === 2) {
+
          if (openCard[0].firstElementChild.className === openCard[1].firstElementChild.className ) {
              openCard.forEach(function(card){
                  card.classList.add('match')
