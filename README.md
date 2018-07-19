@@ -7,6 +7,7 @@
 
 ## Instructions
 ###How to download the game
+
 [PLAY HERE](https://chaonanlin.github.io/memorygame/)
 
 ###How to play the game

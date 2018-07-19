@@ -130,6 +130,7 @@ const flipcard=function (event) {
          clickedCard.classList.add('open', 'show')
          // add the card to a *list* of "open" cards
          openCard.push(clickedCard);
+         clickedCard.removeEventListener('click',flipcard,true)
      }
 
      //if the list already has another card, check to see if the two cards match
@@ -142,9 +143,9 @@ const flipcard=function (event) {
                  card.classList.add('match')
              });
              matchedCards = matchedCards + 2;
-             openCard.forEach(function(card){
-                 card.removeEventListener('click',flipcard,true)
-             });
+             // openCard.forEach(function(card){
+             //     card.removeEventListener('click',flipcard,true)
+             // });
          }
 
          //if the cards do not match, remove the cards from the list and hide the card's symbol
@@ -155,6 +156,9 @@ const flipcard=function (event) {
              openCard.forEach(function(card){
                  setTimeout(function(){card.classList.remove('open' ,'show','shake')
              },700);
+             });
+             openCard.forEach(function(card){
+                 card.addEventListener('click',flipcard,true)
              });
          }
          openCard.splice(0,openCard.length);
