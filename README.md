@@ -8,7 +8,7 @@
 ## Instructions
 ###How to download the game
 
-[PLAY HERE](https://chaonanlin.github.io/memorygame/)
+[PLAY HERE](https://chaonanlin.github.io/fend-project-memory-game/)
 
 ###How to play the game
 
