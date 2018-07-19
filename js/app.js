@@ -159,7 +159,7 @@ const flipcard=function (event) {
          }
          openCard.splice(0,openCard.length);
          // unlock the page
-         setTimeout(function(){overlay.style.display="none";},1500);
+         setTimeout(function(){overlay.style.display="none";},1000);
      }
      move += 1;
      //increment the move counter and display it on the page

@@ -6,12 +6,19 @@
 * [Contributing](#contributing)
 
 ## Instructions
+###How to download the game
+[PLAY HERE](https://chaonanlin.github.io/memorygame/)
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+###How to play the game
 
-To get started, open `js/app.js` and start building out the app's functionality
+The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+When all the cards match, you win!
+
+The least moves you take, more stars you will gain.
+
+## List of dependencies of the game
+You need to connect to internet to play the game.
 
 ## Contributing
 
