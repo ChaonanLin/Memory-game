@@ -19,7 +19,9 @@ When all the cards match, you win!
 The least moves you take, more stars you will gain.
 
 ## List of dependencies of the game
-You need to connect to internet to play the game.
+⋅⋅* Google fonts
+⋅⋅* Bootstrap
+⋅⋅* Font awesome
 
 ## Contributing
 

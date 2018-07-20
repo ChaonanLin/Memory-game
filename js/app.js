@@ -9,10 +9,10 @@ const overlay=document.querySelector('#overlay')
 let openCard=[];
 let matchedCards=0;
 let move = 0;
-var minutes = 0;
-var seconds = 0;
-var hours =0;
-var t;
+let minutes = 0;
+let seconds = 0;
+let hours =0;
+let t;
 
 /*
  * Display the cards on the page
